@@ -1,0 +1,31 @@
+{% set filterExists = false %}
+{% for column in table.columns %}
+    {% if column.filter is not null %}
+        {% set filterExists = true %}
+    {% endif %}
+{% endfor %}
+{% if table.columns|length > 0 and filterExists %}
+    <tr>
+        {% for column in table.columns %}
+            <th>
+                {% set filter = column.filter %}
+                {% if filter is not null %}
+                    {% if filter.type == constant('Samsonos\\AsyncTableBundle\\Metadata\\FilterMetadata::TYPE_INPUT') %}
+                        <input type="text" placeholder="{{ filter.title is not null ? filter.title : '' }}" name="{{ filter.name }}" class="samsonos-async-table__filter-element" value="{{ filter.defaultValue }}">
+                    {% elseif filter.type == constant('Samsonos\\AsyncTableBundle\\Metadata\\FilterMetadata::TYPE_SELECT') %}
+                        <select name="{{ filter.name }}" class="samsonos-async-table__filter-element">
+                            {% if filter.emptyPlaceholder is not null %}
+                                <option value="" {% if filter.emptyPlaceholder == filter.defaultValue %}selected{% endif %}>{{ filter.emptyPlaceholder }}</option>
+                            {% endif %}
+                            {% for option in filter.options %}
+                                <option value="{{ option }}" {% if option == filter.defaultValue %}selected{% endif %}>{{ option }}</option>
+                            {% endfor %}
+                        </select>
+                    {% elseif filter.type == constant('Samsonos\\AsyncTableBundle\\Metadata\\FilterMetadata::TYPE_CHECKBOX') %}
+                        <input type="checkbox" name="{{ filter.name }}" {% if filter.defaultValue %}checked{% endif %} class="samsonos-async-table__filter-element">
+                    {% endif %}
+                {% endif %}
+            </th>
+        {% endfor %}
+    </tr>
+{% endif %}
