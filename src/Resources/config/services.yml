@@ -1,78 +1,78 @@
 services:
   samsonos.async.table:
-    class: Samsonos\AsyncTableBundle\Service\AsyncTable
+    class: Samsonos\AsyncTable\Service\AsyncTable
     arguments: ['@knp_paginator', '@samsonos.async.table.renderer']
 
   samsonos.async.table.renderer:
-    class: Samsonos\AsyncTableBundle\Service\Renderer
+    class: Samsonos\AsyncTable\Service\Renderer
     arguments: ['@twig', '@samsonos.async.table.twig.pagination.ext', '@samsonos.async.table.view.config']
 
   samsonos.async.table.view.config:
-    class: Samsonos\AsyncTableBundle\Service\ViewConfig
+    class: Samsonos\AsyncTable\Service\ViewConfig
     arguments: [[]]
 
   samsonos.async.table.twig.start.ext:
-    class: Samsonos\AsyncTableBundle\Twig\AsyncTableStartExtension
+    class: Samsonos\AsyncTable\Twig\AsyncTableStartExtension
     arguments: ['@samsonos.async.table.view.config']
     tags:
         - { name: twig.extension }
 
   samsonos.async.table.twig.end.ext:
-    class: Samsonos\AsyncTableBundle\Twig\AsyncTableEndExtension
+    class: Samsonos\AsyncTable\Twig\AsyncTableEndExtension
     arguments: ['@samsonos.async.table.view.config']
     tags:
         - { name: twig.extension }
 
   samsonos.async.table.twig.pagination.ext:
-    class: Samsonos\AsyncTableBundle\Twig\AsyncTablePaginationExtension
+    class: Samsonos\AsyncTable\Twig\AsyncTablePaginationExtension
     arguments: ['@samsonos.async.table.view.config']
     tags:
         - { name: twig.extension }
 
   samsonos.async.table.twig.start_header.ext:
-    class: Samsonos\AsyncTableBundle\Twig\AsyncTableStartHeaderExtension
+    class: Samsonos\AsyncTable\Twig\AsyncTableStartHeaderExtension
     arguments: ['@samsonos.async.table.view.config']
     tags:
         - { name: twig.extension }
 
   samsonos.async.table.twig.end_header.ext:
-    class: Samsonos\AsyncTableBundle\Twig\AsyncTableEndHeaderExtension
+    class: Samsonos\AsyncTable\Twig\AsyncTableEndHeaderExtension
     arguments: ['@samsonos.async.table.view.config']
     tags:
         - { name: twig.extension }
 
   samsonos.async.table.twig.header.ext:
-    class: Samsonos\AsyncTableBundle\Twig\AsyncTableHeaderExtension
+    class: Samsonos\AsyncTable\Twig\AsyncTableHeaderExtension
     arguments: ['@samsonos.async.table.view.config']
     tags:
         - { name: twig.extension }
 
   samsonos.async.table.twig.filter.ext:
-    class: Samsonos\AsyncTableBundle\Twig\AsyncTableFilterExtension
+    class: Samsonos\AsyncTable\Twig\AsyncTableFilterExtension
     arguments: ['@samsonos.async.table.view.config']
     tags:
         - { name: twig.extension }
 
   samsonos.async.table.twig.end_table.ext:
-    class: Samsonos\AsyncTableBundle\Twig\AsyncTableEndTableExtension
+    class: Samsonos\AsyncTable\Twig\AsyncTableEndTableExtension
     arguments: ['@samsonos.async.table.view.config']
     tags:
         - { name: twig.extension }
 
   samsonos.async.table.twig.table.ext:
-    class: Samsonos\AsyncTableBundle\Twig\AsyncTableExtension
+    class: Samsonos\AsyncTable\Twig\AsyncTableExtension
     arguments: ['@samsonos.async.table.view.config']
     tags:
         - { name: twig.extension }
 
   samsonos.async.table.twig.table_theme.ext:
-    class: Samsonos\AsyncTableBundle\Twig\AsyncTableThemeExtension
+    class: Samsonos\AsyncTable\Twig\AsyncTableThemeExtension
     arguments: ['@samsonos.async.table.view.config']
     tags:
         - { name: twig.extension }
 
   samsonos.async.table.twig.table_init.ext:
-    class: Samsonos\AsyncTableBundle\Twig\AsyncTableInitExtension
+    class: Samsonos\AsyncTable\Twig\AsyncTableInitExtension
     arguments: ['@samsonos.async.table.view.config']
     tags:
         - { name: twig.extension }
