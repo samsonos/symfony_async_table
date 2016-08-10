@@ -7,7 +7,7 @@
     "homepage": "http://samsonos.com",
     "minimum-stability": "dev",
     "authors": [
-        {"name": "Molodyko Ruslan", "email": "molodyko13@gmail.com"}
+        {"name": "Ruslan Molodyko", "email": "molodyko13@gmail.com"}
     ],
     "require": {
         "php": ">=5.4.0"
