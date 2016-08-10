@@ -1,0 +1,24 @@
+{
+    "name": "samsonos/async_table",
+    "type": "library",
+    "license": "MIT",
+    "description": "Render async table",
+    "keywords": ["async", "table"],
+    "homepage": "http://samsonos.com",
+    "minimum-stability": "dev",
+    "authors": [
+        {"name": "Ruslan Molodyko", "email": "molodyko13@gmail.com"}
+    ],
+    "require": {
+        "php": ">=5.4.0"
+    },
+    "require-dev": {
+        "knplabs/knp-paginator-bundle": "^2.4",
+        "phpunit/phpunit": "5.5.*"
+    },
+    "autoload": {
+        "psr-4" : {
+            "Samsonos\\AsyncTable\\" : "src/"
+        }
+    }
+}

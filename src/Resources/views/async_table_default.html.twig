@@ -1,0 +1,118 @@
+{#Render full table#}
+{% block async_table %}
+    {{ block('async_table_start') }}
+    {% if table.view %}
+        {% include table.view with table.viewData %}
+    {% endif %}
+    {{ block('async_table_end') }}
+    {{ block('async_table_pagination') }}
+    {{ block('async_table_init') }}
+{% endblock %}
+
+{% block async_table_start %}
+    {{ block('async_table_start_header') }}
+    {{ block('async_table_header') }}
+    {{ block('async_table_filter') }}
+    {{ block('async_table_end_header') }}
+{% endblock %}
+
+{#Render end of table#}
+{% block async_table_end %}
+        </tbody>
+    </table>
+{% endblock %}
+
+{% block async_table_pagination %}
+    <div class="samsonos-async-table__pagination {% block pagination_class %}{% endblock %}">
+        {{ knp_pagination_render(table.pagination) }}
+    </div>
+{% endblock %}
+
+{#Render scripts of table#}
+{% block async_table_init %}
+    {% block async_table_style %}
+        {% stylesheets  filter='cssrewrite' '@AsyncTableBundle/Resources/public/less/async_table_default.less' %}
+            <link href="{{ asset_url }}" type="text/css" rel="stylesheet" />
+        {% endstylesheets %}
+    {% endblock %}
+    {% block async_table_script %}
+        {% javascripts '@AsyncTableBundle/Resources/public/js/async-table.js' %}
+            <script type="text/javascript" src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+    {% endblock %}
+    {% block async_table_init_script %}
+        <script>
+            $(document).ready(function () {
+                (new AsyncTable('#{{ table.internalId }}', window.location.origin + window.location.pathname)).init();
+            });
+        </script>
+    {% endblock %}
+{% endblock %}
+
+{#Render start of header#}
+{% block async_table_start_header %}
+    <div class="samsonos-async-table {% block table_wrapper_class %}{% endblock %}" id="{{ table.internalId }}">
+        <table class="{% block table_class %}{% endblock %}">
+            <thead>
+{% endblock %}
+
+{#Render header#}
+{% block async_table_header %}
+    <tr class="samsonos-async-table__header">
+        {% for column in table.columns %}
+            <th class="{% block header_th_class %}{% endblock %}">
+                {% if column.querySelector is not null %}
+                    {{ knp_pagination_sortable(table.pagination, column.title, column.querySelector) }}
+                {% else %}
+                    {{ column.title }}
+                {% endif %}
+            </th>
+        {% endfor %}
+    </tr>
+{% endblock %}
+
+{#Render filter#}
+{% block async_table_filter %}
+    {% set filterExists = false %}
+    {% for column in table.columns %}
+        {% if column.filter is not null %}
+            {% set filterExists = true %}
+        {% endif %}
+    {% endfor %}
+    {% if table.columns|length > 0 and filterExists %}
+        <tr>
+            {% for column in table.columns %}
+                <th class="{% block filter_th_class %}{% endblock %}">
+                    {% set filter = column.filter %}
+                    {% if filter is not null %}
+                        {% if filter.type == constant('Samsonos\\AsyncTable\\Metadata\\FilterMetadata::TYPE_INPUT') %}
+                            <input type="text" placeholder="{{ filter.title is not null ? filter.title : '' }}" name="{{ filter.name }}" class="samsonos-async-table__filter-element {% block input_class %}{% endblock %}" value="{{ filter.defaultValue }}">
+                        {% elseif filter.type == constant('Samsonos\\AsyncTable\\Metadata\\FilterMetadata::TYPE_SELECT') %}
+                            <select name="{{ filter.name }}" class="samsonos-async-table__filter-element {% block select_class %}{% endblock %}">
+                                {% if filter.emptyPlaceholder is not null %}
+                                    <option value="" {% if filter.emptyPlaceholder == filter.defaultValue %}selected{% endif %}>{{ filter.emptyPlaceholder }}</option>
+                                {% endif %}
+                                {% for key, option in filter.options %}
+                                    <option value="{{ option }}" {% if option == filter.defaultValue %}selected{% endif %}>{{ key }}</option>
+                                {% endfor %}
+                            </select>
+                        {% elseif filter.type == constant('Samsonos\\AsyncTable\\Metadata\\FilterMetadata::TYPE_CHECKBOX') %}
+                            <label class="{% block checkbox_label_class %}{% endblock %}">
+                                <input type="checkbox" name="{{ filter.name }}" {% if filter.defaultValue %}checked{% endif %} class="samsonos-async-table__filter-element {% block checkbox_class %}{% endblock %}">
+                                {% if filter.title is not null %}
+                                    {{ filter.title }}
+                                {% endif %}
+                            </label>
+                        {% endif %}
+                    {% endif %}
+                </th>
+            {% endfor %}
+        </tr>
+    {% endif %}
+{% endblock %}
+
+{#Render end of header#}
+{% block async_table_end_header %}
+    </thead>
+        <tbody class="samsonos-async-table__body {% block table_body_class %}{% endblock %}">
+{% endblock %}
