@@ -17,8 +17,8 @@
         "phpunit/phpunit": "5.5.*"
     },
     "autoload": {
-        "psr-0" : {
-            "Samsonos\\AsyncTableBundle" : "src/"
+        "psr-4" : {
+            "Samsonos\\AsyncTableBundle\\" : "src/"
         }
     }
 }
