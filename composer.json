@@ -1,5 +1,5 @@
 {
-    "name": "samsonos/async_table9",
+    "name": "samsonos9/async_table9",
     "type": "library",
     "description": "Render async table",
     "keywords": ["async", "table"],
