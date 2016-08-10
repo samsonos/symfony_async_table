@@ -4,7 +4,7 @@
     "description": "Render async table",
     "keywords": ["async", "table"],
     "homepage": "http://samsonos.com",
-	"minimum-stability": "dev",
+    "minimum-stability": "dev",
     "authors": [
         {"name": "Ruslan Molodyko", "email": "molodyko13@gmail.com"}
     ],
