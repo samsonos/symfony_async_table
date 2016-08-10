@@ -1,18 +1,18 @@
 <?php
 
-namespace Samsonos\AsyncTableBundle\DependencyInjection;
+namespace Samsonos\AsyncTable\DependencyInjection;
 
-use Samsonos\AsyncTableBundle\Twig\AsyncTableEndExtension;
-use Samsonos\AsyncTableBundle\Twig\AsyncTableEndHeaderExtension;
-use Samsonos\AsyncTableBundle\Twig\AsyncTableEndTableExtension;
-use Samsonos\AsyncTableBundle\Twig\AsyncTableExtension as AsyncTableExtensionTwig;
-use Samsonos\AsyncTableBundle\Twig\AsyncTableFilterExtension;
-use Samsonos\AsyncTableBundle\Twig\AsyncTableHeaderExtension;
-use Samsonos\AsyncTableBundle\Twig\AsyncTableInitExtension;
-use Samsonos\AsyncTableBundle\Twig\AsyncTablePaginationExtension;
-use Samsonos\AsyncTableBundle\Twig\AsyncTableStartExtension;
-use Samsonos\AsyncTableBundle\Twig\AsyncTableStartHeaderExtension;
-use Samsonos\AsyncTableBundle\Twig\TwigTable;
+use Samsonos\AsyncTable\Twig\AsyncTableEndExtension;
+use Samsonos\AsyncTable\Twig\AsyncTableEndHeaderExtension;
+use Samsonos\AsyncTable\Twig\AsyncTableEndTableExtension;
+use Samsonos\AsyncTable\Twig\AsyncTableExtension as AsyncTableExtensionTwig;
+use Samsonos\AsyncTable\Twig\AsyncTableFilterExtension;
+use Samsonos\AsyncTable\Twig\AsyncTableHeaderExtension;
+use Samsonos\AsyncTable\Twig\AsyncTableInitExtension;
+use Samsonos\AsyncTable\Twig\AsyncTablePaginationExtension;
+use Samsonos\AsyncTable\Twig\AsyncTableStartExtension;
+use Samsonos\AsyncTable\Twig\AsyncTableStartHeaderExtension;
+use Samsonos\AsyncTable\Twig\TwigTable;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Samsonos\AsyncTableBundle;
+namespace Samsonos\AsyncTable;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 

@@ -4,8 +4,9 @@
     "description": "Render async table",
     "keywords": ["async", "table"],
     "homepage": "http://samsonos.com",
+	"minimum-stability": "dev",
     "authors": [
-        {"name": "Molodyko Ruslan", "email": "molodyko13@gmail.com"}
+        {"name": "Ruslan Molodyko", "email": "molodyko13@gmail.com"}
     ],
     "require": {
         "php": ">=5.4.0"
@@ -15,8 +16,8 @@
         "phpunit/phpunit": "5.5.*"
     },
     "autoload": {
-        "psr-0" : {
-            "Samsonos\\AsyncTable" : "src/"
+        "psr-4" : {
+            "Samsonos\\AsyncTable\\" : "src/"
         }
     }
 }

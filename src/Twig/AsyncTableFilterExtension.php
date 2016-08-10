@@ -5,7 +5,7 @@
  * Date: 23.07.2015
  * Time: 15:34
  */
-namespace Samsonos\AsyncTableBundle\Twig;
+namespace Samsonos\AsyncTable\Twig;
 
 class AsyncTableFilterExtension extends TwigTable {
 

@@ -1,14 +1,14 @@
 <?php
 
-namespace Samsonos\AsyncTableBundle\Tests;
+namespace Samsonos\AsyncTable\Tests;
 
 use PHPUnit\Framework\TestCase;
 use Knp\Component\Pager\Paginator;
-use Samsonos\AsyncTableBundle\Metadata\ColumnMetadata;
-use Samsonos\AsyncTableBundle\Metadata\FilterMetadata;
-use Samsonos\AsyncTableBundle\Metadata\TableMetadata;
-use Samsonos\AsyncTableBundle\Service\AsyncTable;
-use Samsonos\AsyncTableBundle\Service\Renderer;
+use Samsonos\AsyncTable\Metadata\ColumnMetadata;
+use Samsonos\AsyncTable\Metadata\FilterMetadata;
+use Samsonos\AsyncTable\Metadata\TableMetadata;
+use Samsonos\AsyncTable\Service\AsyncTable;
+use Samsonos\AsyncTable\Service\Renderer;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\HeaderBag;

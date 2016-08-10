@@ -5,9 +5,9 @@
  * Date: 23.07.2015
  * Time: 15:34
  */
-namespace Samsonos\AsyncTableBundle\Twig;
+namespace Samsonos\AsyncTable\Twig;
 
-use Samsonos\AsyncTableBundle\Service\ViewConfig;
+use Samsonos\AsyncTable\Service\ViewConfig;
 
 class AsyncTableThemeExtension extends \Twig_Extension
 {

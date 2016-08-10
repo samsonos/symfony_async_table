@@ -5,7 +5,7 @@
  * Date: 05.08.2016
  * Time: 16:37
  */
-namespace Samsonos\AsyncTableBundle\Service;
+namespace Samsonos\AsyncTable\Service;
 
 class ViewConfig
 {

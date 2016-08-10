@@ -5,16 +5,16 @@
  * Date: 04.08.2016
  * Time: 16:31
  */
-namespace Samsonos\AsyncTableBundle\Service;
+namespace Samsonos\AsyncTable\Service;
 
-use Samsonos\AsyncTableBundle\Metadata\TableMetadata;
-use Samsonos\AsyncTableBundle\Twig\AsyncTableHeaderExtension;
-use Samsonos\AsyncTableBundle\Twig\AsyncTablePaginationExtension;
+use Samsonos\AsyncTable\Metadata\TableMetadata;
+use Samsonos\AsyncTable\Twig\AsyncTableHeaderExtension;
+use Samsonos\AsyncTable\Twig\AsyncTablePaginationExtension;
 
 /**
  * Class Renderer
  *
- * @package Samsonos\AsyncTableBundle\Service
+ * @package Samsonos\AsyncTable\Service
  */
 class Renderer
 {

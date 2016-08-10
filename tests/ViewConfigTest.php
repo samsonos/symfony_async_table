@@ -1,9 +1,9 @@
 <?php
 
-namespace Samsonos\AsyncTableBundle\Tests;
+namespace Samsonos\AsyncTable\Tests;
 
 use PHPUnit\Framework\TestCase;
-use Samsonos\AsyncTableBundle\Service\ViewConfig;
+use Samsonos\AsyncTable\Service\ViewConfig;
 
 class ViewConfigTestTest extends TestCase
 {

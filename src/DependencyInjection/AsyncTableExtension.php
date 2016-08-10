@@ -1,6 +1,6 @@
 <?php
 
-namespace Samsonos\AsyncTableBundle\DependencyInjection;
+namespace Samsonos\AsyncTable\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;

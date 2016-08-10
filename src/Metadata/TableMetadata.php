@@ -5,7 +5,7 @@
  * Date: 04.08.2016
  * Time: 17:01
  */
-namespace Samsonos\AsyncTableBundle\Metadata;
+namespace Samsonos\AsyncTable\Metadata;
 
 use Knp\Component\Pager\Pagination\PaginationInterface;
 

@@ -1,12 +1,12 @@
 <?php
 
-namespace Samsonos\AsyncTableBundle\Tests;
+namespace Samsonos\AsyncTable\Tests;
 
 use PHPUnit\Framework\TestCase;
-use Samsonos\AsyncTableBundle\Metadata\TableMetadata;
-use Samsonos\AsyncTableBundle\Service\Renderer;
-use Samsonos\AsyncTableBundle\Service\ViewConfig;
-use Samsonos\AsyncTableBundle\Twig\AsyncTablePaginationExtension;
+use Samsonos\AsyncTable\Metadata\TableMetadata;
+use Samsonos\AsyncTable\Service\Renderer;
+use Samsonos\AsyncTable\Service\ViewConfig;
+use Samsonos\AsyncTable\Twig\AsyncTablePaginationExtension;
 
 class RendererTest extends TestCase
 {

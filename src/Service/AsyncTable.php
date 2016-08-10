@@ -6,20 +6,20 @@
  * Time: 15:34
  */
 
-namespace Samsonos\AsyncTableBundle\Service;
+namespace Samsonos\AsyncTable\Service;
 
 use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\Paginator;
-use Samsonos\AsyncTableBundle\Metadata\ColumnMetadata;
-use Samsonos\AsyncTableBundle\Metadata\FilterMetadata;
-use Samsonos\AsyncTableBundle\Metadata\TableMetadata;
+use Samsonos\AsyncTable\Metadata\ColumnMetadata;
+use Samsonos\AsyncTable\Metadata\FilterMetadata;
+use Samsonos\AsyncTable\Metadata\TableMetadata;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Class AsyncTable
  *
- * @package Samsonos\AsyncTableBundle\Service
+ * @package Samsonos\AsyncTable\Service
  */
 class AsyncTable
 {

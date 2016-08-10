@@ -5,10 +5,10 @@
  * Date: 04.08.2016
  * Time: 18:19
  */
-namespace Samsonos\AsyncTableBundle\Twig;
+namespace Samsonos\AsyncTable\Twig;
 
-use Samsonos\AsyncTableBundle\Metadata\TableMetadata;
-use Samsonos\AsyncTableBundle\Service\ViewConfig;
+use Samsonos\AsyncTable\Metadata\TableMetadata;
+use Samsonos\AsyncTable\Service\ViewConfig;
 
 abstract class TwigTable extends \Twig_Extension
 {
