@@ -1,0 +1,14 @@
+{% extends 'AsyncTableBundle::async_table_default.html.twig' %}
+
+{#Render style#}
+{% block async_table_style %}
+    {% stylesheets  filter='cssrewrite' '@AsyncTableBundle/Resources/public/less/async_table_bootstrap.less' %}
+        <link href="{{ asset_url }}" type="text/css" rel="stylesheet" />
+    {% endstylesheets %}
+{% endblock %}
+
+{% block table_class %}table table-striped{% endblock %}
+{% block input_class %}form-control{% endblock %}
+{% block select_class %}form-control{% endblock %}
+{% block checkbox_label_class %}checkbox-inline{% endblock %}
+{% block pagination_class %}pagination{% endblock %}

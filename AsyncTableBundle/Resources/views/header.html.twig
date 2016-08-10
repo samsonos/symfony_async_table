@@ -1,9 +1,0 @@
-<tr class="samsonos-async-table__header">
-    {% for column in table.columns %}
-        {% if column.querySelector is not null %}
-            <th>{{ knp_pagination_sortable(table.pagination, column.title, column.querySelector) }}</th>
-        {% else %}
-            <th>{{ column.title }}</th>
-        {% endif %}
-    {% endfor %}
-</tr>
