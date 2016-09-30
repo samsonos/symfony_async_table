@@ -18,6 +18,9 @@ class FilterMetadata
     // Checkbox true/false
     const TYPE_CHECKBOX = 2;
 
+    // Date range
+    const TYPE_DATE_PICKER = 3;
+
     /**
      * @var string
      */

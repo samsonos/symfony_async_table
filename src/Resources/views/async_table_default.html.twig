@@ -35,16 +35,39 @@
             <link href="{{ asset_url }}" type="text/css" rel="stylesheet" />
         {% endstylesheets %}
     {% endblock %}
+    {% block async_table_date_picker_style%}
+     {% stylesheets  filter='cssrewrite' '@AsyncTableBundle/Resources/public/less/daterangepicker.less' %}
+            <link href="{{ asset_url }}" type="text/css" rel="stylesheet" />
+        {% endstylesheets %}
+    {% endblock %}
     {% block async_table_script %}
-        {% javascripts '@AsyncTableBundle/Resources/public/js/async-table.js' %}
+        {% javascripts
+            '@AsyncTableBundle/Resources/public/js/script-loader.js'
+         %}
             <script type="text/javascript" src="{{ asset_url }}"></script>
         {% endjavascripts %}
     {% endblock %}
     {% block async_table_init_script %}
         <script>
-            $(document).ready(function () {
-                (new AsyncTable('#{{ table.internalId }}', window.location.origin + window.location.pathname)).init();
-            });
+            (new ScriptLoader([
+                {name: 'moment', path: '{{ asset('/bundles/asynctable/js/jquery/moment.min.js') }}'},
+                {name: 'daterangepicker', path: '{{ asset('/bundles/asynctable/js/jquery/daterangepicker.js') }}', depends: ['moment']},
+                {name: 'AsyncTable', path: '{{ asset('/bundles/asynctable/js/async-table.js') }}'},
+            ], '{{ asset('/bundles/asynctable/js/jquery/jquery.min.js') }}')).then(function () {
+                   (new AsyncTable('#{{ table.internalId }}', window.location.origin + window.location.pathname)).init();
+                    // Selector for datepicker
+                    var datePickerSelector = $('.samsonos-async-table__filter-element--date-picker');
+                    // Init datepicker
+                    datePickerSelector.daterangepicker({
+                        locale: {
+                            format: 'YYYY-MM-DD'
+                        }
+                    });
+                    // Event click "apply" button
+                    datePickerSelector.on('apply.daterangepicker', function() {
+                        datePickerSelector.trigger('keyup');
+                    });
+            }).init();
         </script>
     {% endblock %}
 {% endblock %}
@@ -103,6 +126,8 @@
                                     {{ filter.title }}
                                 {% endif %}
                             </label>
+                        {% elseif filter.type == constant('Samsonos\\AsyncTable\\Metadata\\FilterMetadata::TYPE_DATE_PICKER') %}
+                               <input type="text" placeholder="{{ filter.title is not null ? filter.title : '' }}" name="{{ filter.name }}" class="samsonos-async-table__filter-element--date-picker samsonos-async-table__filter-element {% block date_picker_class %}{% endblock %}" value="{{ filter.defaultValue }}">
                         {% endif %}
                     {% endif %}
                 </th>
