@@ -59,9 +59,12 @@
                     var datePickerSelector = $('.samsonos-async-table__filter-element--date-picker');
                     // Init datepicker
                     datePickerSelector.daterangepicker({
+                        autoUpdateInput: false,
                         locale: {
                             format: 'YYYY-MM-DD'
                         }
+                    }, function(date1, date2) {
+                        datePickerSelector.val(date1.format('YYYY-MM-DD') + ' - ' + date2.format('YYYY-MM-DD'));
                     });
                     // Event click "apply" button
                     datePickerSelector.on('apply.daterangepicker', function() {
