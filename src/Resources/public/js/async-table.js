@@ -90,6 +90,13 @@ var AsyncTable = (function () {
                 }
             }.bind(this));
         }
+
+        this.e(this.parentSelector).on(AsyncTable.AFTER_RENDER, function (e, klass, response) {
+            if (!response.isShowPagination) {
+                // Set page to first page
+                this.setHistory(decodeURI(window.location.search).replace(/(\?page=)(\d+)/, '$11').substring(1));
+            }
+        }.bind(this))
     };
 
     /**
@@ -229,7 +236,7 @@ var AsyncTable = (function () {
         this.bind();
 
         // Trigger custom event
-        this.e(this.parentSelector).trigger(AsyncTable.AFTER_RENDER, [this]);
+        this.e(this.parentSelector).trigger(AsyncTable.AFTER_RENDER, [this, response]);
     };
 
     /**

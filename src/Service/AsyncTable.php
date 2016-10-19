@@ -69,7 +69,6 @@ class AsyncTable
     /**
      * Get table metadata
      *
-     * @param array $paginationData
      * @param string $view
      * @param array $data
      * @return TableMetadata
@@ -79,21 +78,15 @@ class AsyncTable
     {
         // Check arbitrary params
         if (!array_key_exists('query', $data)) {
-            throw new \Exception('Query not found in pagination data');
+            throw new \InvalidArgumentException('Query not found in pagination data');
         }
         if (!array_key_exists('columns', $data)) {
-            throw new \Exception('Columns not found');
+            throw new \InvalidArgumentException('Columns not found');
         }
-
-        // Create pagination
-        $pagination = $this->paginator->paginate(
-            $data['query'],
-            array_key_exists('page', $data) ? $data['page'] : self::DEFAULT_CURRENT_PAGE,
-            array_key_exists('pageCount', $data) ? $data['pageCount'] : self::DEFAULT_PAGE_COUNT
-        );
 
         // Create metadata
         $table = new TableMetadata();
+        $pagination = $this->getPagination($data, $table);
         $table->pagination = $pagination;
 
         // Set main view
@@ -103,21 +96,21 @@ class AsyncTable
         // Iterate columns and set values
         foreach ($data['columns'] as $value) {
             $filter = null;
-            $title = isset($value['title']) ? $value['title'] : null;
+            $title = $value['title'] ?? null;
             // Set filter values
-            if (isset($value['filter'])) {
+            if (array_key_exists('filter', $value)) {
                 $filterValue = $value['filter'] === true ? [] : $value['filter'];
                 $filter = new FilterMetadata(
-                    isset($filterValue['name']) ? $filterValue['name'] : $this->underscore($title),
-                    isset($filterValue['type']) ? $filterValue['type'] : null,
-                    isset($filterValue['title']) ? $filterValue['title'] : $title
+                    $filterValue['name'] ?? $this->underscore($title),
+                    $filterValue['type'] ?? null,
+                    $filterValue['title'] ?? $title
                 );
                 // Default value of filter
-                if (isset($filterValue['default_value'])) {
+                if (array_key_exists('default_value', $filterValue)) {
                     $filter->defaultValue = $filterValue['default_value'];
                 }
                 // Options for selector
-                if (isset($filterValue['options']) && is_array($filterValue['options'])) {
+                if (array_key_exists('options', $filterValue) && is_array($filterValue['options'])) {
                     $opts = [];
                     foreach ($filterValue['options'] as $key => $val) {
                         if (is_string($key)) {
@@ -129,20 +122,46 @@ class AsyncTable
                     $filter->options = $opts;
                 }
                 // Empty value for selector filter type
-                if (isset($filterValue['empty_placeholder'])) {
+                if (array_key_exists('empty_placeholder', $filterValue)) {
                     $filter->emptyPlaceholder = $filterValue['empty_placeholder'];
                 }
             }
 
             // Add new column
-            $table->columns[] = new ColumnMetadata(
-                $title,
-                isset($value['selector']) ? $value['selector'] : null,
-                $filter
-            );
+            $table->columns[] = new ColumnMetadata($title, $value['selector'] ?? null, $filter);
         }
 
+        $this->data = $data;
+
         return $table;
+    }
+
+    /**
+     * Get pagination by data
+     *
+     * @param $data
+     * @param TableMetadata $tableMetadata
+     * @param boolean $deep
+     * @return PaginationInterface
+     * @throws \LogicException
+     */
+    protected function getPagination($data, TableMetadata $tableMetadata, $deep = false)
+    {
+        $page = array_key_exists('page', $data) ? $data['page'] : self::DEFAULT_CURRENT_PAGE;
+        $pageCount = array_key_exists('pageCount', $data) ? $data['pageCount'] : self::DEFAULT_PAGE_COUNT;
+
+        // Create pagination
+        $pagination = $this->paginator->paginate($data['query'], $page, $pageCount);
+
+
+        // If count of items more than exists on the page then reload the pagination with correct page number
+        if ($deep === false && ((($page - 1) * $pageCount) > $pagination->getTotalItemCount())) {
+            $data['page'] = 1;
+            $tableMetadata->isShowPagination = false;
+            $pagination = $this->getPagination($data, $tableMetadata, true);
+        }
+
+        return $pagination;
     }
 
     /**
@@ -162,7 +181,8 @@ class AsyncTable
             return new JsonResponse([
                 'body' => $this->renderer->renderBody($tableMetadata),
                 'pagination' => $this->renderer->renderPagination($tableMetadata),
-                'header' => $this->renderer->renderHeader($tableMetadata)
+                'header' => $this->renderer->renderHeader($tableMetadata),
+                'isShowPagination' => $tableMetadata->isShowPagination
             ]);
         }
         // Do something

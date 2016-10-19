@@ -26,6 +26,7 @@ class TableMetadata
     public $view;
     public $viewData;
     public $internalId;
+    public $isShowPagination = true;
 
     /**
      * TableMetadata constructor.
